@@ -1,0 +1,13 @@
+# Secrets
+# *config*
+pyblox_config.py
+# personal workspace stuff
+datetime_format_codes.txt
+.vscode/
+
+# python virtual env
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+__pycache__
