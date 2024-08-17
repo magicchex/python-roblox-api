@@ -2,6 +2,7 @@ import json
 import time
 import requests
 import tkinter
+from functools import partial
 from universe import Universe
 from place import Place
 import pyblox_config as pb_config
@@ -46,14 +47,41 @@ def get_place(
             return
         time.sleep(wait_sec)
 
+def loadUniverseUI(universe: Universe, places: list[Place]):
+    print("You clicked load Universe UI!")
+    print(universe)
+    print(places)
+
+def loadPlaceUI(place: Place):
+    print("You clicked loadPlaceUI")
+    print(place)
+
 if __name__ == "__main__":
-    for data in pb_config.UNIVERSE:
-        universe = get_universe(data["id"])
-        print(universe.vr_enabled)
-        universe.toggle_vr()
-        print(universe.push(pb_config.API_KEY))
-        for place_id in data["place"]:
-            place = get_place(universe.get_id(), place_id)
-            print(place.display_name)
-            print(place.set_description("test"))
-            print(place.push(pb_config.API_KEY, universe.get_id()))
+    window = tkinter.Tk()
+    window.title("Pyblox Cloud")
+    window.geometry("480x360")
+    window.minsize(480,360)
+    window_menu = tkinter.Menu(window)
+    universe_menu = tkinter.Menu(window_menu)
+    # Load Universes and Places into the menu bar
+    for universe_data in pb_config.UNIVERSE:
+        universe = get_universe(universe_data["id"], 3, 1/32)
+        if universe is None:
+            continue
+        universe_options_menu = tkinter.Menu()
+        counter = 1
+        places = []
+        for place_id in universe_data["place"]:
+            place = get_place(universe.get_id(),place_id, 3, 1/32)
+            if place is None:
+                continue
+            places.append(place)
+            universe_options_menu.add_command(label=f"Place {counter}: {place.display_name}", command=partial(loadPlaceUI,place))
+            counter += 1
+        universe_options_menu.add_separator()
+        universe_options_menu.add_command(label=f'Edit "{universe._display_name}"?', command=partial(loadUniverseUI,universe, places))
+        universe_menu.add_cascade(label=universe._display_name, menu=universe_options_menu)
+    
+    window_menu.add_cascade(label="Universe",menu=universe_menu)
+    window.config(menu=window_menu)
+    window.mainloop()
