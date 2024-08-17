@@ -364,7 +364,7 @@ class Universe:
                     field_mask += "vrEnabled, "
                 if item == "private.server":
                     field_mask += "privateServerPriceRobux, "
-            format_url += f"?updateMask={field_mask}"
+            format_url += r"?updateMask={" + field_mask + r"}"
         data = requests.patch(
             format_url,
             headers=pyblox_header.setup(api_key, True),
