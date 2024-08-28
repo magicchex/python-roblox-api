@@ -1,8 +1,8 @@
 # Secrets
-# *config*
 pyblox_config.py
+
 # personal workspace stuff
-datetime_format_codes.txt
+*.p.txt
 .vscode/
 
 # python virtual env
@@ -11,3 +11,8 @@ Lib/
 Scripts/
 pyvenv.cfg
 __pycache__
+
+# Unfinished stuff
+main_gui.py
+resizeable_window.py
+tkinter_helper.py

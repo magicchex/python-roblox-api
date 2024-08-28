@@ -367,7 +367,7 @@ class Universe:
             format_url += r"?updateMask={" + field_mask + r"}"
         data = requests.patch(
             format_url,
-            headers=pyblox_header.setup(api_key, True),
+            headers=pyblox_header.setup(api_key, "json"),
             data=json.dumps(self.to_dict_allowed()),
         )
         return data
@@ -385,6 +385,6 @@ class Universe:
         """
         return requests.post(
             f"{url}/{self.get_id()}:restartServers",
-            headers=pyblox_header.setup(api_key, True),
+            headers=pyblox_header.setup(api_key, "json"),
             data=json.dumps({}),
         )
