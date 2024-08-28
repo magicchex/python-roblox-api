@@ -10,16 +10,15 @@ if __name__ == "__main__":
             place = get_place(universe.get_id(), place_id)
             if place == None:
                 continue
-            for entry in os.listdir(os.path.join(".","places")):
+            folder = os.path.join(".","places")
+            for entry in os.listdir(folder):
                 if os.path.isdir(entry):
                     continue
                 if entry.find(place.display_name) > -1:
-                    os.chdir(os.path.join(".","places"))
-                    response = place.push_place(pyblox_config.API_KEY, universe.get_id(), entry, "Published")
+                    response = place.push_place(pyblox_config.API_KEY, universe.get_id(), os.path.join(folder,entry), "Saved")
                     print(response)
                     if response.status_code == 200:
                         print(f"Successfully uploaded '{entry}' to '{place.display_name}' ({place.get_id()})")
                     else:
                         print(f"Failed to upload '{entry}' to '{place.display_name}' ({place.get_id()})")
-                    os.chdir(os.pardir)
             places.append(place)
