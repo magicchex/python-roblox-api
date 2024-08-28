@@ -21,4 +21,5 @@ if __name__ == "__main__":
                         print(f"Successfully uploaded '{entry}' to '{place.display_name}' ({place.get_id()})")
                     else:
                         print(f"Failed to upload '{entry}' to '{place.display_name}' ({place.get_id()})")
+                    os.chdir(os.pardir)
             places.append(place)
