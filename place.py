@@ -87,7 +87,7 @@ class Place():
         Returns:
             requests.Response: the response from requests.post(). Is most likely a dictionary
         """
-        url += f"/{universe_id}/places/{self.get_id()}/version?versionType={mode}"
+        url += f"/{universe_id}/places/{self.get_id()}/versions?versionType={mode}"
         file = open(roblox_place_file, "rb")
         if roblox_place_file.endswith(".rbxlx"):
             data = requests.post(url, headers=pyblox_header.setup(api_key, "xml"), data=file.read())
