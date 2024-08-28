@@ -4,6 +4,7 @@ pyblox_config.py
 # personal workspace stuff
 *.p.txt
 .vscode/
+places/*
 
 # python virtual env
 Include/
