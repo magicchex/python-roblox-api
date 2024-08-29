@@ -19,7 +19,7 @@ class Place():
         self._update_time = data['updateTime']
         self.display_name = data['displayName']
         self.description = data['description']
-        self.serverSize = data['serverSize']
+        self.server_size = data['serverSize']
     def get_id(self):
         return int(self.path.split("/")[-1])
     def update_display_name(self, text: str):
@@ -31,7 +31,7 @@ class Place():
     def set_description(self, text: str):
         self.update_description(text)
     def update_server_size(self, size: int):
-        self.serverSize = abs(size)
+        self.server_size = abs(size)
     def set_server_size(self, size: int):
         self.update_server_size(size)
     def to_dict(self):
@@ -41,7 +41,7 @@ class Place():
             "updateTime": self._update_time,
             "displayName": self.display_name,
             "description": self.description,
-            "serverSize": self.serverSize
+            "serverSize": self.server_size
         }
     def to_dict_allowed(self):
         data = self.to_dict()
