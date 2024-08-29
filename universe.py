@@ -204,6 +204,7 @@ class Universe:
         Returns:
             bool: mobile enabled?
         """
+        return self.toggle_mobile()
 
     def toggle_tablet(self) -> bool:
         """Whether players can play on tablets or iPads
