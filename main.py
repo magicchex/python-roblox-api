@@ -6,6 +6,8 @@ from place import Place
 import pyblox_config
 import pyblox_header
 import os
+import click
+import sys
 
 def get_universe(
     universe_id: int, do_try: int = 3, wait_sec: int = 2
@@ -46,6 +48,9 @@ def get_place(
         time.sleep(wait_sec)
 
 if __name__ == "__main__":
+    print(sys.argv)
+    
+    """
     for universe_data in pyblox_config.UNIVERSE:
         universe = get_universe(universe_data["id"])
         if universe == None:
@@ -62,3 +67,4 @@ if __name__ == "__main__":
             print("place: " + place.display_name)
             # End of place scripting
             places.append(place)
+    """
